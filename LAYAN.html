@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نَفَس</title>
+<style>
+    body {
+        margin: 0;
+        font-family: "Tajawal", sans-serif;
+        background: #f2f2f2;
+        color: #333;
+    }
+
+    header {
+        background: #b5b5b5;
+        padding: 30px 20px;
+        text-align: center;
+        font-size: 32px;
+        font-weight: bold;
+        border-bottom: 2px solid #999;
+    }
+
+    .intro {
+        background: #e0e0e0;
+        margin: 20px;
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        transition: all 0.5s ease;
+    }
+
+    .menu-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #8d8d8d;
+        color: #fff;
+        padding: 12px 18px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 16px;
+        z-index: 1000;
+    }
+
+    .popup-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100%;
+        background: #e0e0e0;
+        box-shadow: -3px 0 10px rgba(0,0,0,0.2);
+        padding: 40px 20px;
+        transition: right 0.4s ease;
+        z-index: 999;
+        overflow-y: auto;
+    }
+
+    .popup-menu.open {
+        right: 0;
+    }
+
+    .popup-menu h2 {
+        margin-top: 0;
+        text-align: center;
+    }
+
+    .menu-item {
+        background: #fff;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 10px;
+        font-size: 18px;
+        cursor: pointer;
+        font-weight: bold;
+        text-align: center;
+        transition: background 0.3s;
+    }
+
+    .menu-item:hover {
+        background: #d1d1d1;
+    }
+
+    .section-box {
+        background: #ffffff;
+        margin: 20px;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 8px rgba(0,0,0,0.1);
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.6s ease;
+    }
+
+    .section-box.active {
+        max-height: 2000px;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .contact-box {
+        margin-top: 10px;
+        background: #f7f7f7;
+        padding: 15px;
+        border-radius: 10px;
+        border-right: 4px solid #9e9e9e;
+    }
+
+    a.whatsapp {
+        display: inline-block;
+        margin-top: 10px;
+        background: #25d366;
+        color: #fff;
+        padding: 10px 15px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    h3 { margin-top: 15px; }
+</style>
+</head>
+<body>
+<header>
+    <img src="logo.png" alt="نَفَس" style="width:150px; display:block; margin:0 auto 10px auto;">
+    
+</header>
+
+<div class="intro">
+    <h2>مرحباً بك في نَفَس</h2>
+    <p>موقع يهدف لدعم الأم الجديدة ومتابعة صحة الطفل بعد الولادة، يقدم نصائح وإرشادات عملية ومعلومات دقيقة.</p>
+</div>
+
+<!-- قسم الصور المقترحة -->
+<div style="display:flex; gap:15px; padding:20px; justify-content:center; flex-wrap:wrap;">
+    <div style="background:#fff; width:300px; padding:15px; border-radius:15px; text-align:center; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+        <img src="mom_baby.jpg" style="width:100%; border-radius:12px;">
+        <h3>رحلة الأمومة</h3>
+        <p style="font-size:14px; color:#666;">معلومات تدعم الأم في أيامها الأولى وتمنحها راحة أكبر.</p>
+    </div>
+
+    <div style="background:#fff; width:300px; padding:15px; border-radius:15px; text-align:center; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+        <img src="baby_care.jpg" style="width:100%; border-radius:12px;">
+        <h3>العناية بالطفل</h3>
+        <p style="font-size:14px; color:#666;">إرشادات دقيقة لمتابعة نمو الطفل وصحته اليومية.</p>
+    </div>
+
+    <div style="background:#fff; width:300px; padding:15px; border-radius:15px; text-align:center; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+        <img src="consult.jpg" style="width:100%; border-radius:12px;">
+        <h3>استشارات طبية</h3>
+        <p style="font-size:14px; color:#666;">تواصل مباشر مع الطبيبة لأي سؤال أو قلق لديك.</p>
+    </div>
+</div>
+
+<div class="menu-btn" onclick="toggleMenu()">القائمة</div>
+<div class="popup-menu" id="popupMenu">
+    <h2>القائمة</h2>
+    <div class="menu-item" onclick="openSection('mother')">معلومات عن الأم</div>
+    <div class="menu-item" onclick="openSection('child')">معلومات عن الطفل</div>
+    <div class="menu-item" onclick="openSection('consult')">الاستشارات الطبية</div>
+</div>
+
+<div class="section-box" id="mother">
+    <h2>الأم</h2>
+    <h3>التعافي بعد الولادة</h3>
+    <p>الراحة مهمة خلال الأسابيع الأولى بعد الولادة، تجنّب رفع أشياء ثقيلة، وممارسة تمارين بسيطة وفق إرشادات الطبيب.</p>
+    <h3>العناية بالجروح</h3>
+    <p>تنظيف جرح الولادة يوميًا، متابعة علامات الالتهاب مثل الاحمرار أو الإفرازات، ومراجعة الطبيب عند الحاجة.</p>
+    <h3>التغذية</h3>
+    <p>تناول وجبات متوازنة تحتوي على بروتين، خضار، فواكه، وشرب كمية كافية من الماء يوميًا.</p>
+    <h3>الصحة النفسية</h3>
+    <p>الراحة، طلب الدعم من العائلة، واستشارة طبيب أو أخصائي نفسي عند الشعور بالاكتئاب أو القلق.</p>
+    <h3>الرضاعة</h3>
+    <p>الحفاظ على وضعية صحيحة للرضاعة، شرب السوائل، تجنب التوتر، ومتابعة نمو الطفل من خلال الرضاعة.</p>
+</div>
+
+<div class="section-box" id="child">
+    <h2>الطفل</h2>
+    <h3>التغذية والرضاعة</h3>
+    <p>الرضاعة الطبيعية أو الصناعية حسب حاجة الطفل، متابعة عدد الرضعات يوميًا والتأكد من كفاية الحليب.</p>
+    <h3>متابعة الوزن والنمو</h3>
+    <p>تسجيل الوزن والطول بشكل دوري، ومراجعة الطبيب عند أي تأخر في النمو أو علامات غير طبيعية.</p>
+    <h3>اللقاحات</h3>
+    <p>الالتزام بجدول التطعيمات الوطني، مراجعة الطبيب عند ظهور أي أعراض غير معتادة بعد التطعيم.</p>
+    <h3>الصحة العامة</h3>
+    <p>مراقبة الحمى، التنفس، البراز، البول، واليُقظة، والتواصل مع طبيب الأطفال عند الحاجة.</p>
+    <h3>النوم وتنمية الطفل</h3>
+    <p>خلق روتين نوم ثابت، اللعب البسيط لتحفيز الحواس، التحدث والغناء للطفل، متابعة التطور الحركي والعقلي.</p>
+</div>
+
+<div class="section-box" id="consult">
+    <h2>الاستشارات الطبية</h2>
+    <p>تواصل مباشرة مع الدكتورة المختصة:</p>
+    <div class="contact-box">
+        <strong>د . منيره البقمي </strong><br>
+        <a class="whatsapp" href="https://wa.me/9660551658868" target="_blank">تواصل واتساب</a>
+    </div>
+</div>
+
+<script>
+function toggleMenu() {
+    document.getElementById("popupMenu").classList.toggle("open");
+}
+function openSection(id) {
+    ['mother','child','consult'].forEach(sec=>{
+        document.getElementById(sec).classList.remove('active');
+    });
+    document.getElementById(id).classList.add('active');
+    toggleMenu();
+    document.getElementById(id).scrollIntoView({behavior:'smooth', block:'start'});
+}
+</script>
+
+</body>
+</html>
+
